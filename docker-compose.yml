@@ -4,6 +4,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - NODE_ENV=production
+    command: sh -c "npm install && npm start"
     ports:
       - "8080:3000"
     environment:
