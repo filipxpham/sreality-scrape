@@ -18,6 +18,9 @@ const config = {
     locales: ["en"],
     defaultLocale: "en",
   },
+  images: {
+    domains: ["d18-a.sdn.cz", "www.sreality.cz"],
+  },
 };
 
 export default config;

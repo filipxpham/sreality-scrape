@@ -1,18 +1,15 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
-    provider = "prisma-client-js"
-    previewFeatures = ["jsonProtocol"]
+  provider        = "prisma-client-js"
+  previewFeatures = ["jsonProtocol"]
 }
 
 datasource db {
-    provider = "sqlite"
-    url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = "postgres://avnadmin:AVNS_rJ7Ef9SMWujOn8hx5CH@pg-34715f9-filipmahnert-b88b.aivencloud.com:15666/defaultdb?sslmode=require"
 }
 
-model Example {
-    id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+model flats {
+  id        Int     @id @default(autoincrement())
+  title     String @db.VarChar(255)
+  image_url String @db.VarChar(255)
 }
