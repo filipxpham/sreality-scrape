@@ -1,9 +1,24 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable react/jsx-key */
 import Head from "next/head";
 import Image from "next/image";
+import { useState } from "react";
+import Loading from "~/components/loading";
 import Offers from "~/components/offers";
 
 export default function Home() {
+  const [isLoading, setisLoading] = useState(false);
+
+  const handleFetchFlats = async () => {
+    setisLoading(true);
+    const response = await fetch("/api/fetchFlats");
+    if (response.ok) {
+      console.log("Data fetched");
+      setisLoading(false);
+    } else {
+      console.error("Error fetching flats");
+    }
+  };
   return (
     <>
       <Head>
@@ -31,8 +46,21 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        <Offers />
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <>
+            <Offers />
+            <section className="flex w-full items-center justify-center pb-8">
+              <button
+                className="rounded border-b-4 border-red-700 bg-red-500 px-4 py-2 font-bold text-white hover:border-red-500 hover:bg-red-400"
+                onClick={() => handleFetchFlats()}
+              >
+                Fetch flats
+              </button>
+            </section>
+          </>
+        )}
       </main>
     </>
   );
