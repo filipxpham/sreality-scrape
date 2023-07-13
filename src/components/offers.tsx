@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useState, type FC } from "react";
 import { api } from "~/utils/api";
 import Loading from "./loading";
-import React, { JSXElementConstructor, ReactElement } from 'react';
+import React from 'react';
 
 const Offers: FC = () => {
   const [page, setPage] = useState(0);
