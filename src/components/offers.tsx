@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useState, type FC } from "react";
 import { api } from "~/utils/api";
 import Loading from "./loading";
+import React, { JSXElementConstructor, ReactElement } from 'react';
 
 const Offers: FC = () => {
   const [page, setPage] = useState(0);
@@ -21,14 +22,14 @@ const Offers: FC = () => {
           </h2>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {data?.map(({ id, image_url, title }) => (
+          {data?.map(({ id, image_url, title }: {id: number, image_url: string, title: string}) => (
             <div
               className="rounded-lg border border-gray-200 bg-white shadow-sm "
-              key={id}
+              key={id.toString()}
             >
               <Image
                 className="w-full rounded-lg p-4"
-                src={image_url}
+                src={image_url.toString()}
                 alt={title}
                 width={400}
                 height={400}
